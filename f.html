@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Final — Para Bruna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--paper:#eee7e1;--muted:#a49c98;--rose:#d78d99;--line:rgba(255,255,255,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--paper);font-family:Inter,sans-serif;font-weight:300;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:30;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.serif{font-family:"Cormorant Garamond",serif}a{color:inherit;text-decoration:none}
+.nav{position:absolute;top:0;left:0;right:0;padding:28px 7vw;display:flex;justify-content:space-between;z-index:5;font-size:9px;letter-spacing:.3em;text-transform:uppercase}.logo{font:18px "Cormorant Garamond";letter-spacing:.12em;text-transform:none}.back{color:var(--rose)}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;position:relative;padding:110px 8vw;background:radial-gradient(circle at 50% 48%,rgba(130,51,66,.22),transparent 30%),#070707}
+.hero:before{content:"";position:absolute;width:min(72vw,720px);height:min(72vw,720px);border:1px solid rgba(215,141,153,.12);border-radius:50%;animation:breathe 5s ease-in-out infinite}
+@keyframes breathe{50%{transform:scale(1.035);opacity:.55}}
+.hero-content{position:relative;z-index:1}.eyebrow{font-size:9px;letter-spacing:.5em;color:var(--rose);text-transform:uppercase;margin-bottom:26px}
+.hero h1{font-size:clamp(64px,10vw,125px);font-weight:400;line-height:.78;margin:0}.hero h1 em{color:var(--rose);font-style:italic}.hero p{color:var(--muted);max-width:510px;margin:38px auto 0;font-size:13px;line-height:2}
+.scroll{position:absolute;bottom:35px;font-size:8px;letter-spacing:.4em;color:#666;text-transform:uppercase}.scroll:after{content:"↓";display:block;color:var(--rose);font-size:15px;margin-top:8px}
+.letter{min-height:100vh;max-width:850px;margin:auto;padding:150px 7vw;display:flex;align-items:center}
+.letter-inner{width:100%;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:80px 0}
+.letter h2{font-size:clamp(40px,6vw,72px);font-weight:400;line-height:.95;margin:0 0 45px}.letter p{font:400 21px/1.65 "Cormorant Garamond";color:#d9d0ca;margin:0 0 22px}.letter p.muted{color:var(--muted)}
+.signature{margin-top:50px;color:var(--rose);font:italic 28px "Cormorant Garamond"}
+.reveal{opacity:0;transform:translateY(35px);transition:1.1s ease}.reveal.show{opacity:1;transform:none}
+.big{min-height:80vh;display:grid;place-items:center;text-align:center;padding:100px 8vw;background:linear-gradient(#070707,#0b090a);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.big h2{font-size:clamp(55px,9vw,115px);font-weight:400;line-height:.8;max-width:1050px;margin:25px auto}.big h2 em{color:var(--rose)}
+.final-photo{max-width:1050px;margin:auto;padding:120px 7vw;display:grid;grid-template-columns:1fr 1fr;gap:8vw;align-items:center}
+.photo{border:1px solid var(--line);padding:10px;background:#0d0d0d;box-shadow:0 35px 80px #000;transform:rotate(-2deg)}.photo img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.35) contrast(1.04)}
+.placeholder{display:grid;place-items:center;min-height:400px;background:linear-gradient(135deg,#151313,#0b0b0b)}.placeholder span{font-size:8px;letter-spacing:.25em;text-transform:uppercase;color:#777;text-align:center;padding:20px}
+.copy h3{font:400 clamp(40px,5vw,65px)/.95 "Cormorant Garamond";margin:0 0 25px}.copy p{font-size:13px;color:var(--muted);line-height:1.9;max-width:410px}.heart{font-size:34px;color:var(--rose);margin-bottom:22px}
+.closing{text-align:center;padding:120px 7vw 150px;border-top:1px solid var(--line);background:radial-gradient(circle at 50% 40%,rgba(215,141,153,.1),transparent 30%)}.closing h2{font:400 clamp(55px,8vw,105px)/.85 "Cormorant Garamond";margin:0 auto 30px;max-width:1000px}.closing h2 em{color:var(--rose)}.closing p{font:13px/1.9;color:var(--muted);max-width:500px;margin:auto}.forever{margin:55px auto 40px;font:italic 34px "Cormorant Garamond";color:var(--paper)}
+.restart{display:inline-flex;border:1px solid var(--rose);padding:16px 28px;border-radius:40px;font-size:9px;letter-spacing:.35em;text-transform:uppercase;transition:.3s}.restart:hover{background:var(--rose);color:#100b0c}
+footer{text-align:center;border-top:1px solid var(--line);padding:32px;color:#666;font-size:8px;letter-spacing:.35em;text-transform:uppercase}
+@media(max-width:760px){.nav{padding:22px 6vw}.letter{padding:100px 7vw}.letter-inner{padding:60px 0}.letter p{font-size:19px}.final-photo{grid-template-columns:1fr;padding:100px 7vw}.photo{max-width:300px;margin:auto}.copy{text-align:center}.copy p{margin:auto}.hero h1{font-size:67px}}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="logo" href="a.html">M & B</a><a class="back" href="a.html">← voltar</a></nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">capítulo seis · o fim</div>
+    <h1 class="serif">Mas talvez<br>isso seja só o <em>começo.</em></h1>
+    <p>Porque algumas histórias chegam ao último capítulo. A nossa não precisa chegar.</p>
+  </div>
+  <div class="scroll">descer</div>
+</header>
+
+<main>
+<section class="letter">
+  <div class="letter-inner reveal">
+    <div class="eyebrow">uma última carta</div>
+    <h2 class="serif">Bruna,</h2>
+    <p>Se você chegou até aqui, então já passou por cada pedacinho dessa pequena história que eu fiz pensando em você.</p>
+    <p>Eu poderia tentar escrever alguma coisa perfeita para terminar tudo isso. Mas a verdade é que, quando se trata de você, eu nunca acho que as palavras são suficientes.</p>
+    <p>Então vou ser simples.</p>
+    <p class="muted">Obrigado por existir do jeitinho que você existe. Obrigado pelos momentos, pelos sorrisos, pelas conversas e por todas as pequenas coisas que talvez você nem imagine o quanto significam para mim.</p>
+    <div class="signature">Moisés ♡</div>
+  </div>
+</section>
+
+<section class="big">
+  <div class="reveal">
+    <div class="eyebrow">se eu pudesse escolher</div>
+    <h2 class="serif">Eu escolheria <em>você.</em><br>De novo. E de novo.</h2>
+  </div>
+</section>
+
+<section class="final-photo">
+  <figure class="photo reveal">
+    <img src="img/bb 2.jpeg" alt="Nós dois" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<span>adicione sua foto em<br>fotos/final.jpg</span>'">
+  </figure>
+  <div class="copy reveal">
+    <div class="heart">♡</div>
+    <h3 class="serif">E se isso fosse um filme...</h3>
+    <p>...eu não gostaria que aparecessem os créditos agora.</p>
+    <p>Porque eu ainda quero viver um monte de cenas com você. As bonitas, as engraçadas, as inesperadas e até aquelas que a gente ainda nem sabe que vão acontecer.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="reveal">
+    <div class="eyebrow">fim?</div>
+    <h2 class="serif">A melhor parte é que<br><em>a história continua.</em></h2>
+    <p>Esse site termina aqui. Mas tudo aquilo que ele representa ainda está sendo escrito.</p>
+    <div class="forever">para você, hoje e em todos os nossos próximos capítulos.</div>
+    <a class="restart" href="a.html">↺ voltar ao começo</a>
+  </div>
+</section>
+</main>
+
+<footer>feito por Moisés · para Bruna · com amor</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Nossa Música — Bruna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#090909; --paper:#eee7df; --muted:#a8a09b;
+  --rose:#d98d99; --line:rgba(255,255,255,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--paper);font-family:Inter,sans-serif;font-weight:300;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:20;opacity:.075;
+background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+a{color:inherit;text-decoration:none}
+.serif{font-family:"Cormorant Garamond",serif}
+.nav{position:absolute;top:0;left:0;right:0;padding:28px 7vw;display:flex;justify-content:space-between;align-items:center;z-index:5;text-transform:uppercase;letter-spacing:.28em;font-size:9px}
+.logo{font-family:"Cormorant Garamond";font-size:18px;letter-spacing:.12em;text-transform:none}
+.back{color:var(--rose)}
+.hero{min-height:100vh;display:grid;place-items:center;text-align:center;padding:100px 24px;position:relative;
+background:radial-gradient(circle at 50% 38%,rgba(119,49,61,.16),transparent 35%),linear-gradient(#0b0b0b,#080808)}
+.hero:after{content:"";position:absolute;bottom:0;left:7vw;right:7vw;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:9px;letter-spacing:.48em;color:var(--rose);text-transform:uppercase;margin-bottom:24px}
+.hero h1{font-size:clamp(48px,7vw,88px);font-weight:400;line-height:.92;max-width:800px;margin:0 auto 42px}
+.hero h1 em{color:var(--rose);font-style:italic}
+.discover,.continue{display:inline-flex;align-items:center;gap:13px;border:1px solid var(--rose);padding:15px 28px;border-radius:40px;text-transform:uppercase;letter-spacing:.35em;font-size:9px;transition:.35s;background:rgba(217,141,153,.02)}
+.discover:hover,.continue:hover{background:var(--rose);color:#100c0d;box-shadow:0 0 35px rgba(217,141,153,.18)}
+.hand{position:absolute;color:#8c626a;font-family:"Cormorant Garamond";font-style:italic;font-size:20px;line-height:1.05;max-width:150px}
+.hand.one{right:8%;top:28%;transform:rotate(-8deg)} .hand.two{left:7%;top:58%;transform:rotate(-8deg)}
+.story{max-width:1180px;margin:auto;padding:110px 6vw 40px}
+.intro{max-width:680px;margin:0 auto 100px;text-align:center}
+.intro h2{font-size:clamp(36px,5vw,62px);font-weight:400;line-height:1.05;margin:0 0 20px}
+.intro p{color:var(--muted);font-size:14px;line-height:1.9}
+.scene{display:grid;grid-template-columns:1.2fr .8fr;gap:7vw;align-items:center;margin:0 0 125px;opacity:0;transform:translateY(35px);transition:1s ease}
+.scene.show{opacity:1;transform:none}
+.scene:nth-of-type(even){grid-template-columns:.8fr 1.2fr}.scene:nth-of-type(even) .frame{order:2}
+.frame{position:relative;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.1);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.frame img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;filter:saturate(.72) contrast(1.05);transition:transform 1.2s ease}
+.scene:hover img{transform:scale(1.045)}
+.frame:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 35%,rgba(0,0,0,.25))}
+.copy .num{color:var(--rose);font-size:10px;letter-spacing:.3em}
+.copy h3{font-family:"Cormorant Garamond";font-size:38px;font-weight:400;line-height:1.05;margin:16px 0 24px}
+.copy p{color:var(--muted);line-height:1.9;font-size:13px;max-width:390px}
+.dash{width:38px;border-top:1px solid var(--rose);margin-top:28px}
+.placeholder{min-height:280px;display:grid;place-items:center;text-align:center;padding:30px;background:linear-gradient(135deg,#151313,#0d0d0d)}
+.placeholder span{font-size:9px;text-transform:uppercase;letter-spacing:.22em;color:#8d8784}
+.music{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:100px 6vw;background:radial-gradient(circle at 28% 50%,rgba(119,49,61,.13),transparent 30%)}
+.music-inner{max-width:1050px;margin:auto;display:grid;grid-template-columns:360px 1fr;gap:8vw;align-items:center}
+.vinyl{width:330px;height:330px;border-radius:50%;background:repeating-radial-gradient(circle,#111 0 3px,#191919 4px 5px);box-shadow:0 20px 70px #000;display:grid;place-items:center;position:relative;animation:spin 7s linear infinite paused}
+.vinyl.playing{animation-play-state:running}
+.vinyl:before{content:"";width:105px;height:105px;border-radius:50%;background:#b76e7c;box-shadow:inset 0 0 0 2px #2a161b}
+.vinyl:after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:#080808}
+@keyframes spin{to{transform:rotate(360deg)}}
+.music-copy .eyebrow{margin-bottom:15px}
+.music-copy h2{font-size:clamp(38px,5vw,65px);font-weight:400;line-height:1;margin:0 0 8px}
+.artist{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--muted)}
+.controls{margin-top:35px}
+.bar{height:2px;background:#363334;position:relative;cursor:pointer}
+.progress{position:absolute;left:0;top:0;height:100%;width:0;background:var(--rose)}
+.times{display:flex;justify-content:space-between;margin-top:9px;font-size:8px;color:#777}
+.buttons{display:flex;align-items:center;gap:20px;margin-top:22px}
+.play{width:56px;height:56px;border-radius:50%;border:1px solid var(--rose);background:none;color:var(--paper);font-size:15px;cursor:pointer}
+.skip{background:none;border:0;color:#aaa;font-size:15px;cursor:pointer}
+.final{max-width:1150px;margin:auto;padding:100px 6vw;display:grid;grid-template-columns:1.2fr .8fr;gap:7vw;align-items:center}
+.final h2{font-family:"Cormorant Garamond";font-size:clamp(42px,6vw,76px);font-weight:400;line-height:.95;margin:0 0 30px}
+.signature{margin:30px 0;color:var(--muted);font-size:9px;letter-spacing:.35em;text-transform:uppercase}
+.polaroid{background:#e8dfd5;padding:12px 12px 42px;transform:rotate(4deg);box-shadow:0 30px 60px #000;max-width:330px;justify-self:end}
+.polaroid img{width:100%;display:block;aspect-ratio:4/5;object-fit:cover;filter:grayscale(.65) sepia(.15)}
+.polaroid figcaption{color:#2a2522;font-family:"Cormorant Garamond";font-style:italic;font-size:18px;margin-top:10px;text-align:center}
+footer{text-align:center;border-top:1px solid var(--line);padding:28px;font-size:8px;letter-spacing:.35em;color:#666;text-transform:uppercase}
+@media(max-width:800px){
+ .nav{padding:22px 6vw}.hand{display:none}
+ .story{padding-top:80px}.scene,.scene:nth-of-type(even){display:flex;flex-direction:column;gap:28px;margin-bottom:85px}
+ .scene:nth-of-type(even) .frame{order:0}.copy{width:100%}.copy h3{font-size:34px}
+ .music-inner,.final{grid-template-columns:1fr;text-align:center}.vinyl{width:260px;height:260px;margin:auto}.music-copy .eyebrow{margin-top:15px}
+ .bar{margin-top:20px}.polaroid{justify-self:center;max-width:280px}.dash{margin-left:auto;margin-right:auto}
+}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="logo" href="a.html">M & B</a><a class="back" href="a.html">← voltar</a></nav>
+
+<section class="hero" id="top">
+  <div class="hand one">É sobre você...<br>e essa música. ♡</div>
+  <div>
+    <div class="eyebrow">capítulo quatro</div>
+    <h1 class="serif">Tem uma música que<br>sempre me leva até <em>você.</em></h1>
+    <button class="discover" id="discover">▶ &nbsp; descobrir</button>
+  </div>
+</section>
+
+<main id="experience">
+<section class="story">
+  <div class="intro">
+    <div class="eyebrow">uma história em quatro cenas</div>
+    <h2>Algumas músicas lembram pessoas.</h2>
+    <p>Mas existem aquelas que parecem ganhar um significado completamente diferente depois que alguém especial aparece na nossa vida.</p>
+  </div>
+
+  <article class="scene">
+    <div class="frame">
+      <img src="img/cena1.jpeg" alt="Cena do filme 10 Coisas que Eu Odeio em Você" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<span>Coloque aqui: filme/cena1.jpg</span>'">
+    </div>
+    <div class="copy">
+      <span class="num">01 &nbsp; 00:00</span>
+      <h3>Eu não sei exatamente quando aconteceu...</h3>
+      <div class="dash"></div>
+    </div>
+  </article>
+
+  <article class="scene">
+    <div class="frame">
+      <img src="img/cena2.jpeg" alt="Cena romântica do filme 10 Coisas que Eu Odeio em Você" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<span>Coloque aqui: filme/cena2.jpg</span>'">
+    </div>
+    <div class="copy">
+      <span class="num">02 &nbsp; 00:15</span>
+      <h3>...mas em algum momento, você virou uma das minhas músicas favoritas.</h3>
+      <p>Talvez seja isso que algumas histórias têm de especial: elas começam pequenas e, quando a gente percebe, já significam tudo.</p>
+      <div class="dash"></div>
+    </div>
+  </article>
+
+  <article class="scene">
+    <div class="frame">
+      <img src="img/cena3.jpeg" alt="Cena do filme 10 Coisas que Eu Odeio em Você" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<span>Coloque aqui: filme/cena3.jpg</span>'">
+    </div>
+    <div class="copy">
+      <span class="num">03 &nbsp; 00:30</span>
+      <h3>Talvez porque algumas histórias de amor parecem feitas para acontecer em um filme.</h3>
+      <p>Um olhar, um sorriso, uma lembrança. De repente, uma música deixa de ser só uma música.</p>
+      <div class="dash"></div>
+    </div>
+  </article>
+
+  <article class="scene">
+    <div class="frame">
+      <img src="img/cena4.jpeg" alt="Cena romântica do filme 10 Coisas que Eu Odeio em Você" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<span>Coloque aqui: filme/cena4.jpg</span>'">
+    </div>
+    <div class="copy">
+      <span class="num">04 &nbsp; 00:45</span>
+      <h3>E então eu encontrei uma música que parecia falar de nós.</h3>
+      <p>E foi aí que ela ganhou outro significado. Um significado que, pra mim, tem o seu nome.</p>
+      <div class="dash"></div>
+    </div>
+  </article>
+</section>
+
+<section class="music">
+  <div class="music-inner">
+    <div class="vinyl" id="vinyl"></div>
+    <div class="music-copy">
+      <div class="eyebrow">a nossa música</div>
+      <h2 class="serif">Can't Get Enough<br>of You Baby</h2>
+      <div class="artist">Smash Mouth</div>
+      <div class="controls">
+        <div class="bar" id="bar"><div class="progress" id="progress"></div></div>
+        <div class="times"><span id="current">0:00</span><span id="duration">0:00</span></div>
+        <div class="buttons">
+          <button class="skip" id="back">|◀</button>
+          <button class="play" id="play">▶</button>
+          <button class="skip" id="forward">▶|</button>
+        </div>
+      </div>
+      <audio id="audio" src="musica/cant-get-enough.mp3" preload="metadata"></audio>
+    </div>
+  </div>
+</section>
+
+<section class="final">
+  <div>
+    <div class="eyebrow">final</div>
+    <h2>Só que a nossa história ainda está sendo escrita.</h2>
+    <div class="signature">Moisés, para Bruna</div>
+    <a class="continue" href="a.html#paginas">continuar nossa história →</a>
+  </div>
+  <figure class="polaroid">
+    <div class="frame">
+      <img src="img/foto5.jpeg" alt="Você e eu" onerror="this.style.display='none';this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='<span>Opcional: fotos/nos.jpg</span>'">
+    </div>
+    <figcaption>você + eu ♡</figcaption>
+  </figure>
+</section>
+</main>
+
+<footer>feito por Moisés · para Bruna · com amor</footer>
+
+<script>
+const discover=document.getElementById('discover');
+discover.addEventListener('click',()=>document.getElementById('experience').scrollIntoView({behavior:'smooth'}));
+
+const scenes=document.querySelectorAll('.scene');
+const observer=new IntersectionObserver(entries=>{
+ entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')});
+},{threshold:.15});
+scenes.forEach(s=>observer.observe(s));
+
+const audio=document.getElementById('audio'), play=document.getElementById('play');
+const vinyl=document.getElementById('vinyl'), progress=document.getElementById('progress');
+const bar=document.getElementById('bar'), current=document.getElementById('current'), duration=document.getElementById('duration');
+
+function fmt(t){if(!isFinite(t))return '0:00';return Math.floor(t/60)+':'+String(Math.floor(t%60)).padStart(2,'0')}
+audio.addEventListener('loadedmetadata',()=>duration.textContent=fmt(audio.duration));
+audio.addEventListener('timeupdate',()=>{
+ current.textContent=fmt(audio.currentTime);
+ progress.style.width=(audio.duration?audio.currentTime/audio.duration*100:0)+'%';
+});
+audio.addEventListener('ended',()=>{play.textContent='▶';vinyl.classList.remove('playing')});
+play.addEventListener('click',()=>{
+ if(audio.paused){audio.play();play.textContent='Ⅱ';vinyl.classList.add('playing')}
+ else{audio.pause();play.textContent='▶';vinyl.classList.remove('playing')}
+});
+bar.addEventListener('click',e=>{
+ if(!audio.duration)return;
+ const r=bar.getBoundingClientRect();
+ audio.currentTime=((e.clientX-r.left)/r.width)*audio.duration;
+});
+document.getElementById('back').addEventListener('click',()=>audio.currentTime=Math.max(0,audio.currentTime-10));
+document.getElementById('forward').addEventListener('click',()=>audio.currentTime=Math.min(audio.duration||0,audio.currentTime+10));
+</script>
+</body>
+</html>

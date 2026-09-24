@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Uma pequena aventura — Bruna</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#55bff0;--ink:#fff;--muted:#fff;--rose:#ffd447;--rose2:#fff;--line:rgba(255,255,255,.45)}
+*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--ink)}
+body{font-family:Inter,system-ui,sans-serif;image-rendering:pixelated}a{text-decoration:none;color:inherit}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:0}
+#gameWrap{position:relative;width:100vw;height:100vh;background:#55bff0}
+canvas{width:100vw;height:100vh;display:block;image-rendering:pixelated;image-rendering:crisp-edges}
+ .hud{position:fixed;z-index:20;top:18px;left:22px;right:22px;display:flex;justify-content:space-between;align-items:center;pointer-events:none}
+ .brand{pointer-events:auto;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#fff;text-shadow:2px 2px 0 rgba(0,0,0,.28)}.brand span{color:#ffe04b}
+.status{display:flex;gap:18px;padding:10px 15px;border:1px solid var(--line);background:rgba(31,79,111,.55);backdrop-filter:blur(6px);font-size:11px;letter-spacing:.12em;text-transform:uppercase;border-radius:8px}.status b{color:#ffe04b}
+.hint{position:fixed;z-index:20;bottom:24px;left:50%;transform:translateX(-50%);padding:9px 14px;border:1px solid rgba(255,255,255,.1);background:rgba(31,79,111,.55);color:#fff;font-size:10px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;border-radius:2px}
+.screen{position:fixed;inset:0;z-index:30;display:flex;align-items:center;justify-content:center;background:rgba(10,35,55,.38);backdrop-filter:blur(5px);transition:opacity .7s,visibility .7s}.screen.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.card{width:min(620px,calc(100% - 36px));padding:55px 46px;text-align:center;border:4px solid #fff;background:#2d86c5;box-shadow:8px 8px 0 rgba(0,0,0,.22);border-radius:2px}
+.kicker{font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#ffe04b;margin-bottom:18px;text-shadow:2px 2px 0 rgba(0,0,0,.25)}h1,h2{font-family:"Cormorant Garamond",serif;font-weight:500}
+.card h1{font-size:clamp(46px,8vw,78px);line-height:.9;margin-bottom:22px}.card p{font-size:14px;line-height:1.8;color:var(--muted);max-width:460px;margin:0 auto 30px}
+.cta{border:3px solid #fff;background:#e94b35;color:#fff;padding:14px 23px;letter-spacing:.16em;text-transform:uppercase;font-size:10px;cursor:pointer;transition:.3s}.cta:hover{background:#f7b928;transform:translateY(-2px)}
+.finalCard{padding:54px 42px}.flower{font-size:54px;line-height:1;margin-bottom:18px;color:var(--rose2);filter:drop-shadow(0 0 20px rgba(232,168,187,.35))}.finalCard h2{font-size:clamp(42px,7vw,72px);line-height:.95;margin-bottom:22px}.special{font-family:"Cormorant Garamond",serif;font-size:25px;line-height:1.35;color:#f7dce5;max-width:500px;margin:0 auto 18px}.signature{font-family:"Cormorant Garamond",serif;font-size:20px;color:#c9bdc3;margin-bottom:30px}.finalLinks{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.secondary{border-color:rgba(255,255,255,.18);color:#bdb4b9}
+.mobileControls{position:fixed;z-index:25;bottom:28px;left:20px;right:20px;display:none;justify-content:space-between;pointer-events:none}.pad,.jump{display:flex;gap:10px;pointer-events:auto}.ctrl{width:58px;height:58px;border-radius:2px;border:1px solid rgba(255,255,255,.16);background:rgba(31,79,111,.72);color:#fff;backdrop-filter:blur(5px);font-size:22px;touch-action:none;user-select:none}.ctrl:active{background:rgba(232,168,187,.2)}
+@media(max-width:700px){.hud{top:15px;left:16px;right:16px}.status{gap:9px;padding:8px 10px;font-size:9px}.brand{font-size:9px}.hint{bottom:12px;font-size:8px}.mobileControls{display:flex}.card{padding:42px 25px}.card p{font-size:13px}}
+</style>
+</head>
+<body>
+<div id="gameWrap"><canvas id="game"></canvas></div>
+<div class="hud"><a class="brand" href="a.html">M <span>×</span> B</a><div class="status"><span>♥ <b id="hearts">0</b></span><span>✦ <b id="score">0</b></span></div></div>
+<div class="hint">← → mover · espaço / ↑ pular</div>
+
+<div class="lobby" id="startScreen">
+<div class="lobby-bg"><div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="hill h1"></div><div class="hill h2"></div><div class="ground"></div></div>
+<div class="lobby-panel">
+<div class="pixel-label">✦ UMA PEQUENA AVENTURA ✦</div>
+<h1>Até você.</h1>
+<p>Uma pequena jornada começa aqui.<br>Atravesse a fase e descubra o que está esperando no final.</p>
+<div class="lobby-note"><b>★</b><span><strong>Tem uma surpresa no final</strong><small>Não desista antes de chegar lá.</small></span></div>
+<button class="cta" id="startBtn">COMEÇAR A AVENTURA&nbsp; ▶</button>
+<div class="controls"><span>← →</span> MOVER &nbsp; <span>SPACE</span> PULAR</div>
+<a class="back" href="a.html#paginas">← voltar para o início</a>
+</div></div>
+
+<div class="screen hidden" id="finalScreen"><div class="card finalCard">
+<div class="flower">★</div><div class="kicker">fase concluída</div>
+<h2>Você conseguiu!</h2>
+<div class="special">A recompensa estava esperando no final:<br><strong>você é a minha melhor aventura.</strong></div>
+<div class="signature">Moisés, para Bruna</div>
+<div class="finalLinks"><a class="cta secondary" href="a.html#paginas">voltar para nossa história</a><button class="cta" id="replayBtn">jogar de novo</button></div>
+</div></div>
+
+<div class="mobileControls"><div class="pad"><button class="ctrl" data-key="left">←</button><button class="ctrl" data-key="right">→</button></div><div class="jump"><button class="ctrl" data-key="jump">↑</button></div></div>
+
+<script>
+const canvas=document.getElementById("game"),ctx=canvas.getContext("2d"),startScreen=document.getElementById("startScreen"),finalScreen=document.getElementById("finalScreen");
+const PIX_W=480,PIX_H=270; canvas.width=PIX_W;canvas.height=PIX_H;ctx.imageSmoothingEnabled=false;
+const heartsEl=document.getElementById("hearts"),scoreEl=document.getElementById("score");let W,H,DPR,run=false,won=false,last=0,t=0,camera=0,hearts=0,score=0;
+const keys={left:false,right:false,jump:false}, worldW=6200, ground=0;
+const player={x:100,y:0,w:34,h:46,vx:0,vy:0,onGround:false};
+const platforms=[
+[0,0,760,80],[880,0,700,80],[1710,0,720,80],[2550,0,610,80],[3270,0,840,80],[4230,0,690,80],[5050,0,1150,80],
+[500,-125,170,20],[735,-220,145,20],[1040,-145,160,20],[1290,-250,150,20],[1810,-155,150,20],[2050,-265,180,20],[2390,-145,130,20],[2720,-190,160,20],[3000,-300,170,20],[3450,-160,160,20],[3710,-275,155,20],[3990,-155,150,20],[4380,-240,170,20],[4630,-130,130,20],[5250,-180,160,20],[5550,-300,190,20],[610,-60,95,18],[1500,-75,105,18],[2260,-80,110,18],[3160,-55,95,18],[4100,-70,100,18]];
+const obstacles=[[1120,48,48],[1950,42,46],[2870,48,52],[3540,50,50],[4460,44,48],[5350,46,50]];
+const spots=[380,650,950,1180,1420,1880,2150,2460,2760,3050,3370,3650,3920,4320,4560,4830,5160,5480,5800];
+let flowers=[];
+function resize(){W=PIX_W;H=PIX_H;canvas.style.width=innerWidth+"px";canvas.style.height=innerHeight+"px";ctx.setTransform(1,0,0,1,0,0);ctx.imageSmoothingEnabled=false}addEventListener("resize",resize);resize();
+function reset(){player.x=100;player.y=H/2-150;player.vx=0;player.vy=0;camera=0;hearts=0;score=0;won=false;flowers=spots.map((x,i)=>({x,y:-35-(i%3)*45,p:false,ph:i*.8}));heartsEl.textContent=0;scoreEl.textContent=0}
+function begin(){reset();run=true;startScreen.classList.add("hidden");finalScreen.classList.add("hidden");last=performance.now();requestAnimationFrame(loop)}
+document.getElementById("startBtn").onclick=begin;document.getElementById("replayBtn").onclick=begin;
+function kd(e){let k=e.key.toLowerCase();if(["arrowleft","arrowright","arrowup"," ","a","d","w"].includes(k))e.preventDefault();if(k=="arrowleft"||k=="a")keys.left=true;if(k=="arrowright"||k=="d")keys.right=true;if(k=="arrowup"||k=="w"||k==" ")keys.jump=true}
+function ku(e){let k=e.key.toLowerCase();if(k=="arrowleft"||k=="a")keys.left=false;if(k=="arrowright"||k=="d")keys.right=false;if(k=="arrowup"||k=="w"||k==" ")keys.jump=false}addEventListener("keydown",kd);addEventListener("keyup",ku);
+document.querySelectorAll(".ctrl").forEach(b=>{let k=b.dataset.key,on=e=>{e.preventDefault();keys[k]=true},off=e=>{e.preventDefault();keys[k]=false};["touchstart","mousedown"].forEach(x=>b.addEventListener(x,on,{passive:false}));["touchend","touchcancel","mouseup","mouseleave"].forEach(x=>b.addEventListener(x,off,{passive:false}))});
+function update(){if(keys.left)player.vx-=.7;if(keys.right)player.vx+=.7;if(!keys.left&&!keys.right)player.vx*=.82;player.vx=Math.max(-5.4,Math.min(5.4,player.vx));if(keys.jump&&player.onGround){player.vy=-12.5;player.onGround=false}player.vy=Math.min(player.vy+.58,15);let oldY=player.y;player.x+=player.vx;player.y+=player.vy;player.onGround=false;
+for(const q of platforms){let [x,y,w,h]=q,py=H/2+y;if(player.x+player.w>x&&player.x<x+w&&oldY+player.h<=py&&player.y+player.h>=py){player.y=py-player.h;player.vy=0;player.onGround=true}}
+if(player.x<0){player.x=0;player.vx=0}if(player.x+player.w>worldW){player.x=worldW-player.w;player.vx=0}if(player.y>H+180){player.x=100;player.y=H/2-150;player.vy=0;player.vx=0}
+for(const f of flowers){if(f.p)continue;let fy=H/2+f.y+Math.sin(t*.003+f.ph)*7,dx=player.x+17-f.x,dy=player.y+23-fy;if(dx*dx+dy*dy<34*34){f.p=true;hearts++;score+=100;heartsEl.textContent=hearts;scoreEl.textContent=score}}
+for(const o of obstacles){let [x,w,h]=o,oy=H/2;if(player.x+player.w>x&&player.x<x+w&&player.y+player.h>oy-h&&player.y<oy){player.x-=player.vx*2.5;player.vy=-7;player.vx*=-.45}}
+camera+=(Math.max(0,Math.min(worldW-W,player.x-W*.35))-camera)*.08;
+if(player.x>5890&&!won){won=true;run=false;setTimeout(()=>finalScreen.classList.remove("hidden"),550)}}
+function rect(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))}
+function sky(){
+  // céu em faixas para aparência de paleta limitada
+  rect(0,0,W,H,"#42b8ed");
+  rect(0,0,W,38,"#39afe5");
+  rect(0,38,W,45,"#55c5f0");
+  rect(0,83,W,52,"#72d0ef");
+
+  // sol pixelado
+  rect(386,28,22,22,"#ffd83d");rect(382,34,30,10,"#ffd83d");
+  rect(390,24,14,30,"#ffd83d");
+
+  // nuvens em blocos
+  for(let i=0;i<7;i++){
+    let x=((i*87-t*.008)%560)-40,y=35+(i%3)*28;
+    rect(x+8,y,42,12,"#fff");
+    rect(x,y+7,58,10,"#fff");
+    rect(x+18,y-6,18,8,"#fff");
+  }
+}
+function background(){
+  // Montanhas distantes
+  ctx.fillStyle="#6bbd56";
+  ctx.beginPath();ctx.moveTo(0,145);
+  for(let x=0;x<560;x+=80){
+    ctx.lineTo(x+40,108+(x%160)/5);ctx.lineTo(x+80,145);
+  }
+  ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.fill();
+
+  // Montanhas próximas
+  ctx.fillStyle="#4ca943";
+  ctx.beginPath();ctx.moveTo(0,175);
+  for(let x=0;x<560;x+=110){
+    ctx.lineTo(x+55,125+(x%220)/8);ctx.lineTo(x+110,175);
+  }
+  ctx.lineTo(W,H);ctx.lineTo(0,H);ctx.closePath();ctx.fill();
+
+  // Arbustos pixelados
+  for(let i=0;i<12;i++){
+    let x=((i*71-camera*.12)%560)-40,y=H/2+4+(i%2)*7;
+    rect(x,y,26,12,"#258d39");rect(x+6,y-7,14,9,"#2fa542");rect(x+11,y-11,7,6,"#3fb34a");
+  }
+}
+function draw(){
+  sky();background();
+
+  // plataformas: blocos com contorno escuro e detalhes quadrados
+  for(const q of platforms){
+    let[x,y,w,h]=q,X=x-camera,Y=H/2+y;
+    if(X+w<0||X>W)continue;
+    rect(X,Y,w,h,"#6b3c25");
+    rect(X,Y,w,7,"#49b83b");
+    rect(X,Y+7,w,4,"#2e8e32");
+    rect(X,Y+11,w,h-11,"#a85d31");
+    for(let bx=X+8;bx<X+w-4;bx+=22){
+      rect(bx,Y+20,10,9,"#814625");
+      rect(bx+4,Y+30,8,8,"#814625");
+    }
+  }
+
+  // tijolinhos/blocos suspensos com brilho amarelo
+  const bonus=[700,1260,2020,2930,3790,4700,5430];
+  for(let bx of bonus){
+    let X=bx-camera,Y=H/2-105;
+    if(X>-25&&X<W+25){
+      rect(X,Y,22,22,"#b8751e");rect(X+2,Y+2,18,18,"#f1b82d");
+      rect(X+6,Y+6,10,10,"#ffd84a");rect(X,Y,22,3,"#ffe36a");
+    }
+  }
+
+  // obstáculos: inimigos/espinhos em estilo simples
+  for(const o of obstacles){
+    let[x,w,h]=o,X=x-camera,Y=H/2;
+    rect(X,Y-h,w,h,"#b62e28");
+    rect(X+4,Y-h+5,w-8,5,"#e34a32");
+    rect(X+5,Y-h+16,6,6,"#241d22");
+    rect(X+w-11,Y-h+16,6,6,"#241d22");
+    rect(X+8,Y-12,w-16,5,"#7c2726");
+  }
+
+  // estrelas coletáveis
+  for(const f of flowers){
+    if(f.p)continue;
+    let X=f.x-camera,Y=H/2+f.y+Math.sin(t*.003+f.ph)*3;
+    if(X<-20||X>W+20)continue;
+    ctx.fillStyle="#ffe24a";
+    ctx.beginPath();
+    const pts=10;
+    for(let i=0;i<pts;i++){
+      let a=-Math.PI/2+i*Math.PI/5,r=i%2?6:11;
+      let px=X+Math.round(Math.cos(a)*r),py=Y+Math.round(Math.sin(a)*r);
+      if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+    }
+    ctx.closePath();ctx.fill();
+    rect(X-2,Y-2,4,4,"#fff3a0");
+  }
+
+  // bandeira final e portal de recompensa
+  let gx=6000-camera,gy=H/2;
+  rect(gx,gy-72,4,72,"#eeeeee");
+  rect(gx+4,gy-70,35,7,"#e94b35");
+  rect(gx+4,gy-63,28,7,"#e94b35");
+  rect(gx+4,gy-56,20,7,"#e94b35");
+  rect(gx-5,gy,16,4,"#6b3c25");
+
+  // personagem pixelado
+  let X=Math.round(player.x-camera),Y=Math.round(player.y);
+  rect(X+4,H/2+1,25,4,"rgba(0,0,0,.25)");
+  ctx.save();ctx.translate(X+17,Y+23);
+  let bob=Math.abs(player.vx)>.4&&player.onGround?(Math.sin(t*.025)>0?1:0):0;ctx.translate(0,bob);
+  // pernas
+  rect(-10,19,7,13,"#34495e");rect(4,19,7,13,"#34495e");
+  // sapatos
+  rect(-12,29,10,5,"#5b3024");rect(3,29,10,5,"#5b3024");
+  // corpo
+  rect(-14,-5,28,26,"#e84b3c");rect(-17,0,4,13,"#f2c6a0");rect(13,0,4,13,"#f2c6a0");
+  // cabeça
+  rect(-12,-27,24,20,"#f2c6a0");rect(-8,-31,16,5,"#5a3425");rect(-13,-26,26,7,"#5a3425");
+  // cabelo lateral
+  rect(-14,-22,5,11,"#5a3425");rect(9,-22,5,11,"#5a3425");
+  // olhos
+  rect(-7,-18,3,3,"#1d1b1b");rect(5,-18,3,3,"#1d1b1b");
+  // nariz/sorriso
+  rect(4,-10,5,2,"#d68f73");rect(-2,-7,6,2,"#b94d4d");
+  // símbolo
+  rect(-5,3,10,9,"#fff");ctx.fillStyle="#e94b35";ctx.font="bold 8px Arial";ctx.textAlign="center";ctx.fillText("♥",0,11);
+  ctx.restore();
+
+  // HUD de jogo pixelado
+  rect(8,8,104,22,"rgba(20,47,60,.72)");
+  rect(368,8,104,22,"rgba(20,47,60,.72)");
+
+  // leve borda escura
+  rect(0,0,W,3,"rgba(0,0,0,.12)");rect(0,H-3,W,3,"rgba(0,0,0,.12)");
+}
+function loop(now){if(!run){draw();return}t+=Math.min(32,now-last);last=now;update();draw();requestAnimationFrame(loop)}
+reset();draw();
+</script>
+</body>
+</html>

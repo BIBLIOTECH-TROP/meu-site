@@ -1,0 +1,920 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#09080a">
+
+  <title>Uma carta para Bruna</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    :root {
+      --bg: #09080a;
+      --bg-soft: #110d10;
+      --rose: #d88aa9;
+      --rose-light: #f0b9cf;
+      --text: #f8f3f5;
+      --muted: #a9a1a6;
+      --paper: #eee3e5;
+      --paper-text: #30272b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+
+      color: var(--text);
+
+      font-family: "Inter", sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 50% 15%,
+          rgba(216, 138, 169, .15),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 10% 80%,
+          rgba(216, 138, 169, .06),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          #080709,
+          var(--bg-soft),
+          #09080a
+        );
+
+      overflow-x: hidden;
+    }
+
+
+    /* =====================================================
+       TEXTURA CINEMATOGRÁFICA
+    ===================================================== */
+
+    .grain {
+      position: fixed;
+
+      inset: -50%;
+
+      z-index: 100;
+
+      pointer-events: none;
+
+      opacity: .045;
+
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+
+      transform: rotate(8deg);
+    }
+
+
+    /* =====================================================
+       NAVEGAÇÃO
+    ===================================================== */
+
+    nav {
+      position: fixed;
+
+      top: 0;
+      left: 0;
+      right: 0;
+
+      z-index: 20;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      padding:
+        24px
+        clamp(22px, 5vw, 72px);
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(9, 8, 10, .85),
+          transparent
+        );
+
+      backdrop-filter: blur(8px);
+    }
+
+    .brand {
+      color: var(--text);
+
+      text-decoration: none;
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 27px;
+
+      letter-spacing: .08em;
+    }
+
+    .brand span {
+      color: var(--rose-light);
+    }
+
+    .back {
+      color: #bdb4b9;
+
+      text-decoration: none;
+
+      font-size: 10px;
+
+      letter-spacing: .2em;
+
+      text-transform: uppercase;
+
+      transition: .3s;
+    }
+
+    .back:hover {
+      color: var(--rose-light);
+    }
+
+
+    /* =====================================================
+       HERO DA CARTA
+    ===================================================== */
+
+    .intro {
+      min-height: 72vh;
+
+      display: flex;
+
+      flex-direction: column;
+
+      justify-content: center;
+
+      align-items: center;
+
+      text-align: center;
+
+      padding:
+        150px
+        25px
+        80px;
+    }
+
+    .eyebrow {
+      color: var(--rose-light);
+
+      font-size: 9px;
+
+      letter-spacing: .38em;
+
+      text-transform: uppercase;
+
+      margin-bottom: 28px;
+    }
+
+    .intro h1 {
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(
+          62px,
+          10vw,
+          125px
+        );
+
+      font-weight: 400;
+
+      line-height: .82;
+
+      letter-spacing: -.04em;
+    }
+
+    .intro h1 em {
+      color: var(--rose-light);
+
+      font-style: italic;
+    }
+
+    .intro p {
+      max-width: 560px;
+
+      margin-top: 35px;
+
+      color: var(--muted);
+
+      font-size: 13px;
+
+      line-height: 1.9;
+
+      font-weight: 300;
+    }
+
+    .line {
+      width: 1px;
+
+      height: 65px;
+
+      margin-top: 45px;
+
+      background:
+        linear-gradient(
+          var(--rose),
+          transparent
+        );
+    }
+
+
+    /* =====================================================
+       CARTA
+    ===================================================== */
+
+    .letter-section {
+      position: relative;
+
+      padding:
+        40px
+        20px
+        130px;
+    }
+
+    .letter {
+      width: min(760px, 100%);
+
+      margin: auto;
+
+      position: relative;
+
+      padding:
+        clamp(40px, 7vw, 85px)
+        clamp(28px, 8vw, 90px);
+
+      color: var(--paper-text);
+
+      background:
+        linear-gradient(
+          145deg,
+          #f4eaed,
+          #e7dadd
+        );
+
+      box-shadow:
+        0 40px 100px
+        rgba(0,0,0,.5);
+
+      transform:
+        rotate(-.35deg);
+
+      animation:
+        letterAppear
+        1.2s
+        ease both;
+    }
+
+    /* Borda interna */
+
+    .letter::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 18px;
+
+      border:
+        1px solid
+        rgba(96, 61, 73, .18);
+
+      pointer-events: none;
+    }
+
+    /* brilho */
+
+    .letter::after {
+      content: "";
+
+      position: absolute;
+
+      width: 250px;
+      height: 250px;
+
+      top: -120px;
+      right: -120px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(255,255,255,.45),
+          transparent 65%
+        );
+
+      pointer-events: none;
+    }
+
+
+    .letter-top {
+      position: relative;
+
+      z-index: 1;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      margin-bottom: 65px;
+    }
+
+    .letter-date {
+      font-size: 9px;
+
+      letter-spacing: .2em;
+
+      text-transform: uppercase;
+
+      color: #89747d;
+    }
+
+    .small-heart {
+      color: #a8617e;
+
+      font-size: 18px;
+    }
+
+
+    .letter h2 {
+      position: relative;
+
+      z-index: 1;
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-weight: 500;
+
+      font-size:
+        clamp(
+          34px,
+          5vw,
+          48px
+        );
+
+      margin-bottom: 40px;
+    }
+
+
+    .letter-content {
+      position: relative;
+
+      z-index: 1;
+    }
+
+    .letter-content p {
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(
+          20px,
+          2.5vw,
+          24px
+        );
+
+      line-height: 1.65;
+
+      margin-bottom: 28px;
+    }
+
+    .letter-content .highlight {
+      color: #9b5774;
+
+      font-style: italic;
+    }
+
+
+    .signature {
+      position: relative;
+
+      z-index: 1;
+
+      margin-top: 60px;
+
+      text-align: right;
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 30px;
+
+      font-style: italic;
+
+      color: #744a59;
+    }
+
+    .signature small {
+      display: block;
+
+      margin-top: 8px;
+
+      font-family:
+        "Inter",
+        sans-serif;
+
+      font-size: 8px;
+
+      letter-spacing: .25em;
+
+      text-transform: uppercase;
+
+      color: #927c84;
+
+      font-style: normal;
+    }
+
+
+    /* =====================================================
+       DETALHE DO LÍRIO
+    ===================================================== */
+
+    .flower-detail {
+      width: 70px;
+      height: 70px;
+
+      position: absolute;
+
+      bottom: 40px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      opacity: .55;
+    }
+
+    .flower-detail::before,
+    .flower-detail::after {
+      content: "";
+
+      position: absolute;
+
+      width: 28px;
+      height: 48px;
+
+      top: 10px;
+      left: 21px;
+
+      border-radius:
+        70% 30% 70% 30%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #c78ba1,
+          #8b5067
+        );
+    }
+
+    .flower-detail::before {
+      transform: rotate(45deg);
+    }
+
+    .flower-detail::after {
+      transform: rotate(-45deg);
+    }
+
+
+    /* =====================================================
+       FRASE FINAL
+    ===================================================== */
+
+    .closing {
+      width: min(850px, 88%);
+
+      margin: auto;
+
+      padding:
+        100px
+        0
+        140px;
+
+      text-align: center;
+    }
+
+    .closing span {
+      color: var(--rose-light);
+
+      font-size: 9px;
+
+      letter-spacing: .3em;
+
+      text-transform: uppercase;
+    }
+
+    .closing h3 {
+      margin-top: 25px;
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size:
+        clamp(
+          35px,
+          5vw,
+          62px
+        );
+
+      line-height: 1;
+
+      font-weight: 400;
+    }
+
+    .closing h3 em {
+      color: var(--rose-light);
+
+      font-style: italic;
+    }
+
+
+    /* =====================================================
+       BOTÃO
+    ===================================================== */
+
+    .return {
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      margin-top: 40px;
+
+      min-height: 48px;
+
+      padding:
+        0
+        25px;
+
+      border:
+        1px solid
+        rgba(240,185,207,.2);
+
+      border-radius: 999px;
+
+      color: var(--text);
+
+      text-decoration: none;
+
+      font-size: 10px;
+
+      letter-spacing: .18em;
+
+      text-transform: uppercase;
+
+      transition: .35s;
+    }
+
+    .return:hover {
+      transform: translateY(-4px);
+
+      background:
+        rgba(216,138,169,.08);
+
+      border-color:
+        rgba(240,185,207,.4);
+    }
+
+
+    /* =====================================================
+       RODAPÉ
+    ===================================================== */
+
+    footer {
+      padding:
+        35px
+        20px
+        45px;
+
+      text-align: center;
+
+      color: #665e63;
+
+      font-size: 9px;
+
+      letter-spacing: .2em;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       ANIMAÇÃO
+    ===================================================== */
+
+    @keyframes letterAppear {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(40px)
+          rotate(-1deg);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0)
+          rotate(-.35deg);
+      }
+
+    }
+
+
+    /* =====================================================
+       CELULAR
+    ===================================================== */
+
+    @media(max-width: 600px) {
+
+      nav {
+        padding: 20px;
+      }
+
+      .intro {
+        min-height: 68vh;
+
+        padding:
+          130px
+          22px
+          60px;
+      }
+
+      .letter-section {
+        padding:
+          20px
+          13px
+          90px;
+      }
+
+      .letter {
+        padding:
+          48px
+          30px;
+      }
+
+      .letter::before {
+        inset: 12px;
+      }
+
+      .letter-top {
+        margin-bottom: 45px;
+      }
+
+      .letter-content p {
+        font-size: 20px;
+      }
+
+      .signature {
+        font-size: 27px;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- TEXTURA -->
+  <div class="grain"></div>
+
+
+  <!-- MENU -->
+  <nav>
+
+    <a
+      href="a.html"
+      class="brand"
+    >
+      M<span>&</span>B
+    </a>
+
+    <a
+      href="a.html"
+      class="back"
+    >
+      ← voltar
+    </a>
+
+  </nav>
+
+
+
+  <!-- INTRODUÇÃO -->
+
+  <section class="intro">
+
+    <div class="eyebrow">
+      página dois · para você
+    </div>
+
+    <h1>
+      Uma carta<br>
+      <em>para Bruna.</em>
+    </h1>
+
+    <p>
+      Não existe uma maneira perfeita de colocar
+      sentimentos em palavras. Mas algumas pessoas
+      fazem a gente querer tentar mesmo assim.
+    </p>
+
+    <div class="line"></div>
+
+  </section>
+
+
+
+  <!-- CARTA -->
+
+  <section class="letter-section">
+
+    <article class="letter">
+
+
+      <div class="letter-top">
+
+        <span class="letter-date">
+          para ser lida com calma
+        </span>
+
+        <span class="small-heart">
+          ♡
+        </span>
+
+      </div>
+
+
+      <h2>
+        Minha Bruna,
+      </h2>
+
+
+      <div class="letter-content">
+
+        <p>
+          Eu poderia tentar encontrar as palavras
+          mais bonitas do mundo para começar essa
+          carta, mas talvez nenhuma delas consiga
+          explicar exatamente o que você significa
+          para mim.
+        </p>
+
+
+        <p>
+          O que eu sei é que, quando penso em você,
+          penso naqueles pequenos momentos que
+          conseguem transformar um dia comum em
+          alguma coisa especial.
+        </p>
+
+
+        <p>
+          Penso no seu jeito, no seu sorriso, nas
+          conversas que ficam na cabeça mesmo depois
+          que terminam e naquela sensação boa de saber
+          que existe alguém que faz o mundo parecer
+          um pouco mais bonito.
+        </p>
+
+
+        <p>
+          E talvez seja justamente isso que eu mais
+          gosto em nós: <span class="highlight">
+          não são apenas os grandes momentos.
+          </span>
+          São também todas aquelas pequenas coisas
+          que, quando juntas, se tornam inesquecíveis.
+        </p>
+
+
+        <p>
+          Eu não fiz tudo isso para tentar explicar
+          o tamanho do que sinto. Fiz porque queria
+          construir um pequeno lugar onde você pudesse
+          encontrar um pouco desse sentimento sempre
+          que quisesse.
+        </p>
+
+
+        <p>
+          Se algum dia você esquecer o quanto é
+          especial, volte aqui.
+        </p>
+
+
+        <p>
+          Leia novamente.
+        </p>
+
+
+        <p>
+          E lembre que existe alguém que olha para
+          você e pensa:
+          <span class="highlight">
+            "que sorte a minha."
+          </span>
+        </p>
+
+
+      </div>
+
+
+      <div class="signature">
+
+        Moisés
+
+        <small>
+          com todo meu amor
+        </small>
+
+      </div>
+
+
+      <div class="flower-detail"></div>
+
+    </article>
+
+  </section>
+
+
+
+  <!-- ENCERRAMENTO -->
+
+  <section class="closing">
+
+    <span>
+      e essa foi apenas uma parte
+    </span>
+
+    <h3>
+      Ainda tem muito mais<br>
+      <em>para você descobrir.</em>
+    </h3>
+
+    <a
+      href="a.html#paginas"
+      class="return"
+    >
+      voltar para nossa história
+      &nbsp; →
+    </a>
+
+  </section>
+
+
+
+  <!-- RODAPÉ -->
+
+  <footer>
+
+    Moisés · para Bruna · página 02
+
+  </footer>
+
+
+</body>
+</html>
+

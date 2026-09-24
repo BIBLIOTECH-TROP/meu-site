@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09080a">
+
+  <title>Bruna — Uma história que eu escolheria de novo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    :root {
+      --bg: #09080a;
+      --bg2: #100d10;
+      --rose: #d88aa9;
+      --rose2: #f0b9cf;
+      --muted: #a9a1a6;
+      --white: #f8f3f5;
+      --line: rgba(240,185,207,.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--white);
+
+      background:
+        radial-gradient(
+          circle at 78% 18%,
+          rgba(216,138,169,.16),
+          transparent 27%
+        ),
+        radial-gradient(
+          circle at 20% 82%,
+          rgba(216,138,169,.08),
+          transparent 25%
+        ),
+        linear-gradient(
+          135deg,
+          var(--bg),
+          var(--bg2) 58%,
+          #080709
+        );
+
+      font-family: Inter, system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* TEXTURA DE FILME */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px
+        );
+
+      background-size: 80px 80px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          rgba(0,0,0,.55),
+          transparent 90%
+        );
+    }
+
+    .grain {
+      position: fixed;
+      inset: -50%;
+      z-index: 20;
+      pointer-events: none;
+      opacity: .045;
+
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+
+      transform: rotate(8deg);
+    }
+
+    /* MENU */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+
+      z-index: 10;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 24px clamp(22px, 5vw, 72px);
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(9,8,10,.72),
+          transparent
+        );
+
+      backdrop-filter: blur(7px);
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 27px;
+      letter-spacing: .08em;
+
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .brand span {
+      color: var(--rose2);
+    }
+
+    .menu {
+      display: flex;
+      gap: 26px;
+    }
+
+    .menu a {
+      color: #d6cfd3;
+
+      text-decoration: none;
+
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+
+      transition: .25s;
+    }
+
+    .menu a:hover {
+      color: var(--rose2);
+    }
+
+    /* CONTEÚDO */
+
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 100vh;
+
+      position: relative;
+
+      display: grid;
+      place-items: center;
+
+      padding: 130px 7vw 70px;
+
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      width: min(1180px, 100%);
+
+      display: grid;
+
+      grid-template-columns:
+        1.05fr .95fr;
+
+      gap: 7vw;
+
+      align-items: center;
+    }
+
+    /* TEXTO */
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+
+      gap: 13px;
+
+      color: var(--rose2);
+
+      text-transform: uppercase;
+
+      letter-spacing: .32em;
+
+      font-size: 10px;
+
+      font-weight: 500;
+
+      margin-bottom: 26px;
+    }
+
+    .eyebrow::before {
+      content: "";
+
+      width: 38px;
+      height: 1px;
+
+      background: var(--rose);
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+
+      font-weight: 500;
+
+      font-size: clamp(
+        72px,
+        10vw,
+        144px
+      );
+
+      line-height: .78;
+
+      letter-spacing: -.045em;
+
+      margin:
+        0
+        0
+        30px;
+    }
+
+    h1 em {
+      font-weight: 400;
+
+      color: var(--rose2);
+
+      font-style: italic;
+    }
+
+    .lead {
+      max-width: 535px;
+
+      color: #c4bcc1;
+
+      font-size: 15px;
+
+      line-height: 1.9;
+
+      font-weight: 300;
+
+      margin:
+        0
+        0
+        36px;
+    }
+
+    /* BOTÕES */
+
+    .cta {
+      display: flex;
+
+      gap: 13px;
+
+      align-items: center;
+
+      flex-wrap: wrap;
+    }
+
+    .button {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 10px;
+
+      min-height: 48px;
+
+      padding:
+        0
+        22px;
+
+      border:
+        1px solid var(--line);
+
+      border-radius: 999px;
+
+      text-decoration: none;
+
+      color: var(--white);
+
+      font-size: 11px;
+
+      letter-spacing: .15em;
+
+      text-transform: uppercase;
+
+      transition: .35s;
+
+      background:
+        rgba(255,255,255,.025);
+    }
+
+    .button.primary {
+      background:
+        linear-gradient(
+          100deg,
+          #c7789b,
+          #e3a5bd
+        );
+
+      color: #1b0d14;
+
+      border-color: transparent;
+
+      box-shadow:
+        0 14px 45px
+        rgba(216,138,169,.18);
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+
+      border-color:
+        rgba(240,185,207,.42);
+    }
+
+    .button.primary:hover {
+      box-shadow:
+        0 18px 55px
+        rgba(216,138,169,.3);
+    }
+
+    /* FLOR */
+
+    .visual {
+      min-height: 570px;
+
+      position: relative;
+
+      display: grid;
+
+      place-items: center;
+    }
+
+    .halo {
+      position: absolute;
+
+      width: min(37vw, 470px);
+
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(216,138,169,.22),
+          rgba(216,138,169,.04) 46%,
+          transparent 69%
+        );
+
+      filter: blur(4px);
+
+      animation:
+        breathe
+        6s
+        ease-in-out
+        infinite;
+    }
+
+    .ring {
+      position: absolute;
+
+      width: min(32vw, 405px);
+
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(240,185,207,.2);
+
+      transform: rotate(-18deg);
+    }
+
+    .ring::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 17px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(240,185,207,.09);
+    }
+
+    .lily {
+      position: relative;
+
+      width: 230px;
+      height: 230px;
+
+      filter:
+        drop-shadow(
+          0 24px 45px
+          rgba(216,138,169,.23)
+        );
+
+      animation:
+        float
+        6s
+        ease-in-out
+        infinite;
+    }
+
+    .petal {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      width: 92px;
+      height: 160px;
+
+      transform-origin:
+        50% 86%;
+
+      border-radius:
+        62% 38% 60% 40% /
+        70% 45% 55% 30%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #fff7fb 0%,
+          #efc0d3 44%,
+          #bc6e90 100%
+        );
+
+      box-shadow:
+        inset 0 0 20px
+        rgba(255,255,255,.3);
+    }
+
+    .p1 {
+      transform:
+        translate(-50%,-88%)
+        rotate(0);
+    }
+
+    .p2 {
+      transform:
+        translate(-50%,-88%)
+        rotate(60deg);
+    }
+
+    .p3 {
+      transform:
+        translate(-50%,-88%)
+        rotate(120deg);
+    }
+
+    .p4 {
+      transform:
+        translate(-50%,-88%)
+        rotate(180deg);
+    }
+
+    .p5 {
+      transform:
+        translate(-50%,-88%)
+        rotate(240deg);
+    }
+
+    .p6 {
+      transform:
+        translate(-50%,-88%)
+        rotate(300deg);
+    }
+
+    .center {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%,-50%);
+
+      width: 45px;
+      height: 45px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          #f8d99a 0 13%,
+          #c98c78 15% 25%,
+          #7d415a 27% 100%
+        );
+
+      box-shadow:
+        0 0 28px
+        rgba(248,217,154,.28);
+    }
+
+    .stem {
+      position: absolute;
+
+      top: 61%;
+      left: 49%;
+
+      width: 7px;
+      height: 145px;
+
+      background:
+        linear-gradient(
+          #60826a,
+          #20382b
+        );
+
+      border-radius: 10px;
+
+      transform:
+        rotate(9deg);
+
+      transform-origin: top;
+    }
+
+    .leaf {
+      position: absolute;
+
+      width: 95px;
+      height: 42px;
+
+      background:
+        linear-gradient(
+          140deg,
+          #607e69,
+          #20382b
+        );
+
+      border-radius:
+        100% 0 100% 0;
+
+      transform:
+        rotate(-18deg);
+
+      left: 39%;
+      top: 74%;
+    }
+
+    .signature {
+      position: absolute;
+
+      bottom: 9%;
+      right: 0;
+
+      text-align: right;
+
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 18px;
+
+      color: #bfb4ba;
+
+      font-style: italic;
+    }
+
+    /* SCROLL */
+
+    .scroll {
+      position: absolute;
+
+      bottom: 27px;
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      color: #81777d;
+
+      font-size: 9px;
+
+      letter-spacing: .3em;
+
+      text-transform: uppercase;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 11px;
+    }
+
+    .scroll i {
+      width: 1px;
+      height: 42px;
+
+      background:
+        linear-gradient(
+          var(--rose),
+          transparent
+        );
+    }
+
+    /* SEÇÕES */
+
+    .section {
+      width: min(1180px, 86%);
+
+      margin: auto;
+
+      padding: 110px 0;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.06);
+    }
+
+    .section-kicker {
+      color: var(--rose2);
+
+      letter-spacing: .25em;
+
+      font-size: 9px;
+
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-weight: 500;
+
+      font-size:
+        clamp(
+          42px,
+          6vw,
+          76px
+        );
+
+      line-height: .95;
+
+      margin:
+        16px
+        0;
+    }
+
+    .section p {
+      max-width: 650px;
+
+      color: #aaa1a7;
+
+      line-height: 1.9;
+
+      font-size: 14px;
+    }
+
+    /* CARDS */
+
+    .cards {
+      margin-top: 45px;
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 15px;
+    }
+
+    .card {
+      min-height: 205px;
+
+      padding: 28px;
+
+      position: relative;
+
+      overflow: hidden;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,.05),
+          rgba(255,255,255,.015)
+        );
+
+      border-radius: 4px;
+
+      text-decoration: none;
+
+      color: var(--white);
+
+      transition: .4s;
+    }
+
+    .card:hover {
+      transform:
+        translateY(-7px);
+
+      border-color:
+        rgba(240,185,207,.25);
+
+      background:
+        rgba(216,138,169,.07);
+    }
+
+    .num {
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 16px;
+
+      color: var(--rose2);
+    }
+
+    .card h3 {
+      font-family:
+        "Cormorant Garamond",
+        serif;
+
+      font-size: 31px;
+
+      font-weight: 500;
+
+      margin:
+        52px
+        0
+        8px;
+    }
+
+    .card p {
+      font-size: 11px;
+
+      line-height: 1.6;
+
+      color: #91898e;
+
+      margin: 0;
+    }
+
+    .arrow {
+      position: absolute;
+
+      right: 24px;
+      bottom: 24px;
+
+      color: var(--rose2);
+    }
+
+    /* RODAPÉ */
+
+    footer {
+      padding:
+        55px
+        7vw
+        40px;
+
+      text-align: center;
+
+      color: #6f686d;
+
+      font-size: 10px;
+
+      letter-spacing: .18em;
+
+      text-transform: uppercase;
+    }
+
+    /* ANIMAÇÕES */
+
+    @keyframes breathe {
+
+      50% {
+        transform: scale(1.08);
+        opacity: .75;
+      }
+
+    }
+
+    @keyframes float {
+
+      50% {
+        transform:
+          translateY(-13px)
+          rotate(1deg);
+      }
+
+    }
+
+    /* TABLET / CELULAR */
+
+    @media(max-width: 800px) {
+
+      .menu {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .visual {
+        min-height: 400px;
+      }
+
+      .halo,
+      .ring {
+        width: 320px;
+      }
+
+      .lily {
+        transform: scale(.82);
+      }
+
+      .signature {
+        right: 7%;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 80px 0;
+      }
+    }
+
+    @media(max-width: 480px) {
+
+      h1 {
+        font-size: 74px;
+      }
+
+      .visual {
+        min-height: 330px;
+      }
+
+      .lily {
+        transform: scale(.68);
+      }
+
+      .ring,
+      .halo {
+        width: 280px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- TEXTURA -->
+  <div class="grain"></div>
+
+
+  <!-- MENU -->
+  <nav>
+
+    <a class="brand" href="index.html">
+      M<span>&</span>B
+    </a>
+
+    <div class="menu">
+
+      <a href="#inicio">
+        Início
+      </a>
+
+      <a href="#historia">
+        Nossa história
+      </a>
+
+      <a href="#paginas">
+        Explorar
+      </a>
+
+    </div>
+
+  </nav>
+
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+
+      <div class="hero-inner">
+
+        <!-- TEXTO -->
+        <div>
+
+          <div class="eyebrow">
+            para Bruna, com amor
+          </div>
+
+          <h1>
+            Oi,<br>
+            <em>Bruna.</em>
+          </h1>
+
+          <p class="lead">
+
+            Algumas pessoas entram na nossa vida.
+            Outras fazem a vida parecer uma história
+            que vale a pena guardar.
+
+            Esta é uma pequena parte daquilo que eu
+            queria dizer olhando nos seus olhos.
+
+          </p>
+
+
+          <div class="cta">
+
+            <a
+              class="button primary"
+              href="#paginas"
+            >
+              Entrar na nossa história
+              <span>→</span>
+            </a>
+
+            <a
+              class="button"
+              href="#historia"
+            >
+              Ler um pouco primeiro
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <!-- FLOR -->
+        <div
+          class="visual"
+          aria-hidden="true"
+        >
+
+          <div class="halo"></div>
+
+          <div class="ring"></div>
+
+
+          <div class="lily">
+
+            <div class="petal p1"></div>
+            <div class="petal p2"></div>
+            <div class="petal p3"></div>
+            <div class="petal p4"></div>
+            <div class="petal p5"></div>
+            <div class="petal p6"></div>
+
+            <div class="center"></div>
+
+            <div class="stem"></div>
+
+            <div class="leaf"></div>
+
+          </div>
+
+
+          <div class="signature">
+            Moisés, para Bruna.
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="scroll">
+
+        continue
+
+        <i></i>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- NOSSA HISTÓRIA -->
+    <section
+      class="section"
+      id="historia"
+    >
+
+      <span class="section-kicker">
+        antes de abrir as próximas páginas
+      </span>
+
+      <h2>
+        Tem coisas que<br>
+        merecem ser sentidas.
+      </h2>
+
+      <p>
+
+        Então eu não quis fazer apenas um site.
+        Quis criar um lugar para reunir palavras,
+        momentos, música e tudo aquilo que torna
+        você tão especial para mim.
+
+        Cada página vai contar uma parte dessa história.
+
+      </p>
+
+    </section>
+
+
+
+    <!-- PÁGINAS -->
+    <section
+      class="section"
+      id="paginas"
+    >
+
+      <span class="section-kicker">
+        a partir daqui
+      </span>
+
+      <h2>
+
+        Escolha uma<br>
+
+        <em>página.</em>
+
+      </h2>
+
+
+      <div class="cards">
+
+
+        <!-- CARTA -->
+        <a
+          class="card"
+          href="b.html"
+        >
+
+          <span class="num">
+            01
+          </span>
+
+          <h3>
+            A carta
+          </h3>
+
+          <p>
+            Palavras que eu queria que
+            você lesse com calma.
+          </p>
+
+          <span class="arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+
+        <!-- MOMENTOS -->
+        <a
+          class="card"
+          href="c.html"
+        >
+
+          <span class="num">
+            02
+          </span>
+
+          <h3>
+            Momentos
+          </h3>
+
+          <p>
+            Um espaço para nossas fotos,
+            memórias e pequenos detalhes.
+          </p>
+
+          <span class="arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+
+        <!-- MÚSICA -->
+        <a
+          class="card"
+          href="d.html"
+        >
+
+          <span class="num">
+            03
+          </span>
+
+          <h3>
+            A música
+          </h3>
+
+          <p>
+            Can't Get Enough of You Baby —
+            porque algumas músicas dizem tudo.
+          </p>
+
+          <span class="arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+
+        <!-- BRUNA -->
+        <a
+          class="card"
+          href="e.html"
+        >
+
+          <span class="num">
+            04
+          </span>
+
+          <h3>
+            Sobre você
+          </h3>
+
+          <p>
+            Uma página feita para falar da
+            pessoa que inspirou tudo isso.
+          </p>
+
+          <span class="arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+
+        <!-- FINAL -->
+        <a
+          class="card"
+          href="f.html"
+        >
+
+          <span class="num">
+            05
+          </span>
+
+          <h3>
+            No final...
+          </h3>
+
+          <p>
+            Tem uma última coisa que
+            eu quero te dizer.
+          </p>
+
+          <span class="arrow">
+            ↗
+          </span>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- RODAPÉ -->
+  <footer>
+
+    feito por Moisés · para Bruna · com amor
+
+  </footer>
+
+
+</body>
+</html>

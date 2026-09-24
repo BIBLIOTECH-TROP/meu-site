@@ -1,0 +1,1099 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Para Ela — Bruna & Moisés</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #090708;
+      --bg-soft: #100b0e;
+      --pink: #e99aae;
+      --pink-light: #f5c5d0;
+      --text: #f7eef1;
+      --muted: #a99ba0;
+      --line: rgba(233, 154, 174, 0.18);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Inter", sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       GRAIN
+    ========================= */
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .055;
+      z-index: 100;
+
+      background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
+    }
+
+    /* =========================
+       NAV
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 78px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7vw;
+
+      z-index: 20;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(9, 7, 8, .92),
+        rgba(9, 7, 8, 0)
+      );
+    }
+
+    .logo {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 23px;
+      letter-spacing: .12em;
+      color: var(--pink-light);
+    }
+
+    .back {
+      color: #c8bcc0;
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+
+      transition: color .3s ease;
+    }
+
+    .back:hover {
+      color: var(--pink-light);
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 78vh;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      text-align: center;
+
+      position: relative;
+
+      padding: 140px 25px 90px;
+
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+
+      width: 620px;
+      height: 620px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(201, 91, 122, .17),
+          rgba(201, 91, 122, 0) 68%
+        );
+
+      filter: blur(20px);
+
+      top: 50%;
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      color: var(--pink);
+      font-size: 10px;
+      letter-spacing: .38em;
+      text-transform: uppercase;
+
+      margin-bottom: 28px;
+
+      animation: fadeUp 1s ease both;
+    }
+
+    h1 {
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: clamp(60px, 9vw, 120px);
+
+      font-weight: 400;
+      line-height: .82;
+
+      letter-spacing: -.035em;
+
+      margin-bottom: 35px;
+
+      animation: fadeUp 1s .1s ease both;
+    }
+
+    h1 span {
+      color: var(--pink-light);
+      font-style: italic;
+    }
+
+    .hero-text {
+      max-width: 570px;
+      margin: auto;
+
+      color: var(--muted);
+
+      font-size: 14px;
+      line-height: 1.9;
+
+      animation: fadeUp 1s .2s ease both;
+    }
+
+    .scroll {
+      position: absolute;
+      bottom: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      color: #776c71;
+
+      font-size: 9px;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+
+      animation:
+        fadeUp 1s .5s ease both,
+        float 2s 1.5s ease-in-out infinite;
+    }
+
+    /* =========================
+       GALERIA
+    ========================= */
+
+    .gallery-section {
+      padding: 50px 7vw 140px;
+    }
+
+    .gallery-intro {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+
+      border-bottom: 1px solid var(--line);
+
+      padding-bottom: 24px;
+
+      margin-bottom: 50px;
+    }
+
+    .gallery-intro h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 48px;
+      font-weight: 400;
+    }
+
+    .gallery-intro p {
+      max-width: 300px;
+      color: #8d8085;
+      font-size: 11px;
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    .gallery {
+      display: grid;
+
+      grid-template-columns:
+        repeat(12, 1fr);
+
+      gap: 18px;
+    }
+
+    /* =========================
+       FOTOS
+    ========================= */
+
+    .photo {
+      position: relative;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          135deg,
+          #1a1115,
+          #0d090b
+        );
+
+      cursor: pointer;
+
+      border: 1px solid rgba(255, 255, 255, .05);
+
+      min-height: 300px;
+    }
+
+    .photo:nth-child(1) {
+      grid-column: span 7;
+      min-height: 570px;
+    }
+
+    .photo:nth-child(2) {
+      grid-column: span 5;
+      min-height: 570px;
+    }
+
+    .photo:nth-child(3) {
+      grid-column: span 4;
+      min-height: 450px;
+    }
+
+    .photo:nth-child(4) {
+      grid-column: span 4;
+      min-height: 450px;
+    }
+
+    .photo:nth-child(5) {
+      grid-column: span 4;
+      min-height: 450px;
+    }
+
+    .photo:nth-child(6) {
+      grid-column: span 5;
+      min-height: 530px;
+    }
+
+    .photo:nth-child(7) {
+      grid-column: span 7;
+      min-height: 530px;
+    }
+
+    /* =========================
+       VIDEO
+    ========================= */
+
+    .photo-video {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      z-index: 1;
+    }
+
+    /* =========================
+       CONTAINER DAS IMAGENS
+    ========================= */
+
+    .placeholder {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(233, 154, 174, .08),
+          transparent 60%
+        );
+    }
+
+    /* =========================
+       IMAGENS
+    ========================= */
+
+    .placeholder img {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      display: block;
+
+      object-fit: cover;
+      object-position: center;
+
+      transition:
+        transform .8s cubic-bezier(.2, .7, .2, 1),
+        filter .8s ease;
+    }
+
+    .photo:hover .placeholder img {
+      transform: scale(1.055);
+      filter: brightness(.75);
+    }
+
+    /* =========================
+       CAPTION
+    ========================= */
+
+    .caption {
+      position: absolute;
+
+      left: 25px;
+      bottom: 23px;
+
+      z-index: 3;
+
+      opacity: 0;
+
+      transform: translateY(10px);
+
+      transition:
+        opacity .4s ease,
+        transform .4s ease;
+    }
+
+    .photo:hover .caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .caption small {
+      display: block;
+
+      color: var(--pink-light);
+
+      font-size: 9px;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+
+      margin-bottom: 4px;
+    }
+
+    .caption strong {
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: 25px;
+
+      font-weight: 400;
+    }
+
+    /* =========================
+       FRASE
+    ========================= */
+
+    .phrase {
+      padding: 150px 25px;
+
+      text-align: center;
+
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+
+      background:
+        radial-gradient(
+          circle at center,
+          rgba(180, 75, 106, .09),
+          transparent 55%
+        );
+    }
+
+    .phrase p {
+      max-width: 850px;
+
+      margin: auto;
+
+      font-family: "Cormorant Garamond", serif;
+
+      font-size: clamp(35px, 5vw, 62px);
+
+      line-height: 1.05;
+
+      font-weight: 300;
+    }
+
+    .phrase span {
+      color: var(--pink-light);
+      font-style: italic;
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      padding: 70px 7vw;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      color: #71676b;
+
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    footer .heart {
+      color: var(--pink);
+      font-size: 17px;
+      margin: 0 5px;
+    }
+
+    /* =========================
+       LIGHTBOX
+    ========================= */
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+
+      background: rgba(5, 3, 4, .96);
+
+      z-index: 200;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 30px;
+
+      opacity: 0;
+      pointer-events: none;
+
+      transition: opacity .35s ease;
+    }
+
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+
+      max-width: 1100px;
+      max-height: 90vh;
+
+      width: 100%;
+    }
+
+    .lightbox-image {
+      width: 100%;
+      max-height: 85vh;
+
+      object-fit: contain;
+
+      display: block;
+    }
+
+    .close {
+      position: fixed;
+
+      top: 30px;
+      right: 35px;
+
+      width: 45px;
+      height: 45px;
+
+      border: 1px solid rgba(255, 255, 255, .15);
+
+      background: rgba(255, 255, 255, .03);
+
+      color: white;
+
+      font-size: 21px;
+
+      cursor: pointer;
+
+      border-radius: 50%;
+    }
+
+    /* =========================
+       ANIMATIONS
+    ========================= */
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(-50%, 0);
+      }
+
+      50% {
+        transform: translate(-50%, 7px);
+      }
+    }
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      nav {
+        padding: 0 22px;
+      }
+
+      .hero {
+        min-height: 72vh;
+        padding-top: 120px;
+      }
+
+      h1 {
+        font-size: 64px;
+      }
+
+      .hero-text {
+        font-size: 13px;
+      }
+
+      .gallery-section {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .gallery-intro {
+        display: block;
+      }
+
+      .gallery-intro h2 {
+        font-size: 42px;
+        margin-bottom: 15px;
+      }
+
+      .gallery-intro p {
+        text-align: left;
+      }
+
+      .gallery {
+        display: block;
+      }
+
+      .photo,
+      .photo:nth-child(1),
+      .photo:nth-child(2),
+      .photo:nth-child(3),
+      .photo:nth-child(4),
+      .photo:nth-child(5),
+      .photo:nth-child(6),
+      .photo:nth-child(7) {
+        min-height: 420px;
+        margin-bottom: 16px;
+      }
+
+      .caption {
+        opacity: 1;
+        transform: none;
+      }
+
+      .phrase {
+        padding: 100px 25px;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 18px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAV
+  ========================= -->
+
+  <nav>
+
+    <div class="logo">
+      M&B
+    </div>
+
+    <a href="a.html" class="back">
+      ← voltar
+    </a>
+
+  </nav>
+
+
+  <!-- =========================
+       HERO
+  ========================= -->
+
+  <header class="hero">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">
+        para ela
+      </div>
+
+      <h1>
+        Sobre<br>
+        <span>você.</span>
+      </h1>
+
+      <p class="hero-text">
+        Porque falar de você nunca parece suficiente.
+        Existem pessoas que simplesmente chegam e tornam
+        tudo ao redor mais bonito. E você é uma delas.
+      </p>
+
+    </div>
+
+    <div class="scroll">
+      continue
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       GALERIA
+  ========================= -->
+
+  <main class="gallery-section">
+
+    <div class="gallery-intro">
+
+      <h2>
+        A mulher<br>
+        que eu admiro.
+      </h2>
+
+      <p>
+        Cada foto guarda um pouco daquilo que eu vejo em você:
+        sua beleza, seu sorriso, seu jeito e todos os pequenos
+        detalhes que fazem você ser tão especial para mim.
+      </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+      <!-- =========================
+           FOTO / VÍDEO 01
+      ========================= -->
+
+      <div class="photo">
+
+        <video
+          class="photo-video"
+          autoplay
+          muted
+          loop
+          playsinline
+        >
+
+          <source src="img/bb.mp4" type="video/mp4">
+
+          Seu navegador não suporta vídeos.
+
+        </video>
+
+
+        <div class="caption">
+
+          <small>
+            seu sorriso
+          </small>
+
+          <strong>
+            Meu detalhe favorito em você.
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           FOTO 02
+      ========================= -->
+
+      <div class="photo">
+
+        <div class="placeholder">
+
+          <img
+            src="img/bb 2.jpeg"
+            alt="Ela"
+          >
+
+        </div>
+
+
+        <div class="caption">
+
+          <small>
+            seu jeito
+          </small>
+
+          <strong>
+            Até o seu jeito de ser me encanta.
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           FOTO 03
+      ========================= -->
+
+      <div class="photo">
+
+        <div class="placeholder">
+
+          <img
+            src="img/foto6.jpeg"
+            alt="Ela"
+          >
+
+        </div>
+
+
+        <div class="caption">
+
+          <small>
+            sua beleza
+          </small>
+
+          <strong>
+            Você é linda de um jeito que palavras não explicam.
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           FOTO 04
+      ========================= -->
+
+      <div class="photo">
+
+        <div class="placeholder">
+
+          <img
+            src="img/foto2.jpeg"
+            alt="Ela"
+          >
+
+        </div>
+
+
+        <div class="caption">
+
+          <small>
+            você
+          </small>
+
+          <strong>
+            Quanto mais eu olho, mais eu admiro.
+          </strong>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           FOTO 05
+      ========================= -->
+
+      <div class="photo">
+
+        <div class="placeholder">
+
+          <img
+            src="img/foto5.jpeg"
+            alt="Ela"
+          >
+
+        </div>
+
+
+        <div class="caption">
+
+          <small>
+            meu amor
+          </small>
+
+          <strong>
+            Entre tantas pessoas, meu coração escolheu você.
+          </strong>
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       FRASE FINAL
+  ========================= -->
+
+  <section class="phrase">
+
+    <p>
+
+      Se eu pudesse escolher uma pessoa para admirar
+      todos os dias, escolheria você.
+
+      <span>
+        Sem pensar duas vezes.
+      </span>
+
+    </p>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div>
+      M&B
+    </div>
+
+
+    <div>
+
+      feito por Moisés
+
+      <span class="heart">
+        ♡
+      </span>
+
+      para a mulher que eu amo
+
+    </div>
+
+
+    <div>
+
+      <a
+        href="a.html"
+        style="
+          color: inherit;
+          text-decoration: none;
+        "
+      >
+        início
+      </a>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       LIGHTBOX
+  ========================= -->
+
+  <div
+    class="lightbox"
+    id="lightbox"
+  >
+
+    <button
+      class="close"
+      id="close"
+    >
+      ×
+    </button>
+
+
+    <div class="lightbox-content">
+
+      <img
+        class="lightbox-image"
+        id="lightboxImage"
+        src=""
+        alt=""
+      >
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    const photos =
+      document.querySelectorAll(".photo");
+
+    const lightbox =
+      document.getElementById("lightbox");
+
+    const lightboxImage =
+      document.getElementById("lightboxImage");
+
+    const close =
+      document.getElementById("close");
+
+
+    /* =========================
+       ABRIR FOTO
+    ========================= */
+
+    photos.forEach(photo => {
+
+      photo.addEventListener("click", () => {
+
+        const image =
+          photo.querySelector("img");
+
+
+        /*
+          Só abre o lightbox quando
+          uma foto real existir.
+        */
+
+        if (!image) return;
+
+
+        lightboxImage.src =
+          image.src;
+
+        lightboxImage.alt =
+          image.alt;
+
+
+        lightbox.classList.add("active");
+
+      });
+
+    });
+
+
+    /* =========================
+       FECHAR LIGHTBOX
+    ========================= */
+
+    close.addEventListener("click", () => {
+
+      lightbox.classList.remove("active");
+
+    });
+
+
+    /* =========================
+       FECHAR CLICANDO FORA
+    ========================= */
+
+    lightbox.addEventListener("click", event => {
+
+      if (event.target === lightbox) {
+
+        lightbox.classList.remove("active");
+
+      }
+
+    });
+
+
+    /* =========================
+       FECHAR COM ESC
+    ========================= */
+
+    document.addEventListener("keydown", event => {
+
+      if (event.key === "Escape") {
+
+        lightbox.classList.remove("active");
+
+      }
+
+    });
+
+  </script>
+
+</body>
+
+</html>
+
